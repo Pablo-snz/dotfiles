@@ -58,8 +58,6 @@ dialog --title "Instalacion" --infobox "Instalando \`snapd\`" 5 70
 sudo apt -y insstall snapd > /dev/null 2>&1;
 dialog --title "Instalacion" --infobox " \`Añadiendo PPA de Regolith\`" 5 70
 sudo add-apt-repository ppa:regolith-linux/release -y > /dev/null 2>&1;
-dialog --title "Instalacion" --infobox " \`Actualizando\`" 5 70
-sudo apt update > /dev/null 2>&1;
 dialog --title "Instalacion" --infobox "Instalando \`Regolith\`" 5 70
 sudo apt -y install regolith-desktop > /dev/null 2>&1;
 
