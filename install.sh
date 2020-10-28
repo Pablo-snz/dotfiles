@@ -2,11 +2,11 @@
 
 # Functoins
 installPkg(){
-	apt install $1 > /dev/null 2>&1;
+	apt -y install $1 > /dev/null 2>&1;
 }
 
 installSnap(){
-	snap install $1 > /dev/null 2>&1;
+	snap -y install $1 > /dev/null 2>&1;
 }
 
 installGit() {
@@ -50,11 +50,11 @@ if [ "$EUID" -ne 0 ]
   exit
 fi
 
-apt install dialog > /dev/null 2>&1;
-apt insstall snapd > /dev/null 2>&1;
+apt -y install dialog > /dev/null 2>&1;
+apt -y insstall snapd > /dev/null 2>&1;
 add-apt-repository ppa:regolith-linux/release -y > /dev/null 2>&1;
 apt update > /dev/null 2>&1;
-apt install regolith-desktop > /dev/null 2>&1;
+apt -y install regolith-desktop > /dev/null 2>&1;
 
 #i3-config
 cp regolith/config/regolith/i3/config $HOME/.config/regolith/i3/config
