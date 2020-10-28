@@ -2,11 +2,11 @@
 
 # Functoins
 installPkg(){
-	apt -y install $1 > /dev/null 2>&1;
+	sudo apt -y install $1 > /dev/null 2>&1;
 }
 
 installSnap(){
-	snap -y install $1 > /dev/null 2>&1;
+	sudo snap -y install $1 > /dev/null 2>&1;
 }
 
 installGit() {
@@ -45,50 +45,62 @@ instalationMain() { \
 
 #Script
 
-if [ "$EUID" -ne 0 ]
-  then echo "Please run as root"
-  exit
-fi
+read -p "Are you running the script from the repository directory? [N|y]" yn
+case $yn in
+    [Yy]* ) break;;
+    [Nn]* ) exit;;
+	* ) exit;;
+esac
 
-apt -y install dialog > /dev/null 2>&1;
-apt -y insstall snapd > /dev/null 2>&1;
-add-apt-repository ppa:regolith-linux/release -y > /dev/null 2>&1;
-apt update > /dev/null 2>&1;
-apt -y install regolith-desktop > /dev/null 2>&1;
+
+sudo apt -y install dialog > /dev/null 2>&1;
+dialog --title "Instalacion" --infobox "Instalando \`snapd\`" 5 70
+sudo apt -y insstall snapd > /dev/null 2>&1;
+dialog --title "Instalacion" --infobox " \`Añadiendo PPA de Regolith\`" 5 70
+sudo add-apt-repository ppa:regolith-linux/release -y > /dev/null 2>&1;
+dialog --title "Instalacion" --infobox " \`Actualizando\`" 5 70
+sudo apt update > /dev/null 2>&1;
+dialog --title "Instalacion" --infobox "Instalando \`Regolith\`" 5 70
+sudo apt -y install regolith-desktop > /dev/null 2>&1;
 
 #i3-config
-cp regolith/config/regolith/i3/config $HOME/.config/regolith/i3/config
+mkdir -p $HOME/.config/regolith/i3 > /dev/null 2>&1;
+cp regolith/config/regolith/i3/config $HOME/.config/regolith/i3/config #> /dev/null 2>&1;
 
 #compton
-mkdir $HOME/.config/regolith/compton 
-cp regolith-compositor/init /usr/share/regolith-compositor/init
-cp regolith/config/regolith/compton/config $HOME/.config/regolith/i3/config
+mkdir -p $HOME/.config/regolith/compton > /dev/null 2>&1;
+mkdir -p /usr/share/regolith-compositor/init;
+cp regolith/regolith-compositor/init /usr/share/regolith-compositor/init #> /dev/null 2>&1;
+cp regolith/config/regolith/compton/config $HOME/.config/regolith/i3/config #> /dev/null 2>&1;
 
 #i3-status
-mkdir $HOME/.config/i3status
-cp regolith/config/i3status/config $HOME/.config/i3status/config
+mkdir -p $HOME/.config/i3status > /dev/null 2>&1;
+cp regolith/config/i3status/config $HOME/.config/i3status/config #> /dev/null 2>&1;
 
 #themes
-mkdir $HOME/backgrounds
-cp themes/background/bg.jpg $HOME/backgrounds/bg.jpg
+mkdir -p $HOME/backgrounds #> /dev/null 2>&1;
+cp themes/background/bg.jpg $HOME/backgrounds/bg.jpg #> /dev/null 2>&1;
 
 #Instalamos paquetes
 instalationMain
 
 #Enable tap to click
-echo 'Section "InputClass"
-	        Identifier "libinput touchpad catchall"
-	        MatchIsTouchpad "on"
-	        MatchDevicePath "/dev/input/event*"
-	        Driver "libinput"
-			# Enable left mouse button by tapping
-			Option "Tapping" "on"
-	 EndSection' > /etc/X11/xorg.conf.d/40-libinput.conf
+#echo 'Section "InputClass"
+#	        Identifier "libinput touchpad catchall"
+#	        MatchIsTouchpad "on"
+#	        MatchDevicePath "/dev/input/event*"
+#	        Driver "libinput"
+#			# Enable left mouse button by tapping
+#			Option "Tapping" "on"
+#	 EndSection' > /etc/X11/xorg.conf.d/40-libinput.conf
 
 #TODO: Disable double tap (?)
 
 #Instalacion anaconda #
+dialog --title "Instalacion" --infobox "Instalando \`Anaconda\`" 5 70
 cd /temp
-curl –O https://repo.anaconda.com/archive/Anaconda3-2020.02-Linux-x86_64.sh
-bash Anaconda3-2020.02-Linux-x86_64.sh
+curl –O https://repo.anaconda.com/archive/Anaconda3-2020.02-Linux-x86_64.sh > anaconda.sh
+bash anaconda.sh
 cd -
+
+i3 exit
