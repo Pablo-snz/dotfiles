@@ -1,0 +1,7 @@
+#!/bin/bash
+
+if [[ -f "$HOME/.config/regolith/compton/config" ]]; then
+  /usr/bin/compton -f --config $HOME/.config/regolith/compton/config
+else
+  /usr/bin/compton -f --config /etc/regolith/compton/config
+fi
