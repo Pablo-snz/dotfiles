@@ -86,6 +86,42 @@ dialog --title "Creando directorio" --infobox "Directorio backgrounds" 5 70
 mkdir -p $HOME/backgrounds #> /dev/null 2>&1;
 cp themes/background/bg.jpg $HOME/backgrounds/bg.jpg #> /dev/null 2>&1;
 
+#TODO: Añadir configuracion de Xresources.
+dialog --title "Poniendo la terminal bonita" --infobox "Xresources" 5 70
+
+cp regolith/Xresources-regolith $HOME/.Xresources-regolith
+xrdb .Xresources-regolith
+
+## Añadir oh my zsh
+dialog --title "Poniendo la terminal bonita" --infobox "Cambiando Bash por zsh \n Instalando zsh" 5 70
+sudo apt install zsh
+dialog --title "Poniendo la terminal bonita" --infobox "Cambiando Bash por zsh \n Configurando zsh por defecto" 5 70
+chsh -s $(which zsh)
+dialog --title "Poniendo la terminal bonita" --infobox "Cambiando Bash por zsh \n Instalando Oh My zsh" 5 70
+
+git clone https://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
+
+mv $HOME/.zshrc $HOME/.zshrcBefore
+cp regolith/.zshrc $HOME/.zshrc
+
+#Descargamos el tema WhiteSur de iconos
+
+#Descargamos el tema Breeze
+
+#Cambiamos el tema de GTK
+sudo echo "[Settings]
+gtk-application-prefer-dark-theme=0
+gtk-button-images=1
+gtk-cursor-theme-name=WhiteSur-cursors
+gtk-decoration-layout=close,minimize,maximize:
+gtk-enable-animations=1
+gtk-font-name=Noto Sans,  10
+gtk-icon-theme-name=WhiteSur
+gtk-menu-images=1
+gtk-primary-button-warps-slider=0
+gtk-theme-name=Breeze
+gtk-toolbar-style=GTK_TOOLBAR_BOTH_HORIZ" > ~/.config/gtk-3.0/settings.ini
+
 #Instalamos paquetes
 instalationMain
 
@@ -107,8 +143,6 @@ dialog --title "Instalacion" --infobox "Instalando \`Anaconda\`" 5 70
 cd $HOME/Descargas || cd $HOME/Downloads
 
 curl https://repo.anaconda.com/archive/Anaconda3-2020.02-Linux-x86_64.sh > anaconda.sh
-bash anaconda.sh
 
-cd -
 
-i3 exit
+killall gnome-session-binary
