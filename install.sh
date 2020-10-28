@@ -31,7 +31,6 @@ gitInstall() {
 
 instalationMain() { \
 	curl -Ls "https://raw.githubusercontent.com/Pablo-snz/dotfiles/main/programs.csv" | sed '/^#/d' > /tmp/programs.csv
-	total=$(wc -l < programas.csv)
 	while IFS=, read -r tag program; do
 		case "$tag" in
 			"s") snapInstall "$program";;
@@ -72,7 +71,7 @@ dialog --title "Creando directorio" --infobox "Directorio Compton" 5 70
 
 mkdir -p $HOME/.config/regolith/compton > /dev/null 2>&1;
 mkdir -p /usr/share/regolith-compositor/init;
-cp regolith/regolith-compositor/init /usr/share/regolith-compositor/init #> /dev/null 2>&1;
+sudo cp regolith/regolith-compositor/init /usr/share/regolith-compositor/init #> /dev/null 2>&1;
 cp regolith/config/regolith/compton/config $HOME/.config/regolith/compton/config #> /dev/null 2>&1;
 
 #i3-status
@@ -104,7 +103,9 @@ instalationMain
 
 #Instalacion anaconda #
 dialog --title "Instalacion" --infobox "Instalando \`Anaconda\`" 5 70
-cd /tmp
+
+cd $HOME/Descargas || cd $HOME/Downloads
+
 curl https://repo.anaconda.com/archive/Anaconda3-2020.02-Linux-x86_64.sh > anaconda.sh
 bash anaconda.sh
 
