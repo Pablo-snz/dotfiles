@@ -501,10 +501,10 @@ colors {
 ###############################################################################
 
 # Start the installed regolith-compositor
-set_from_resource $i3-wm.program.compositor i3-wm.program.compositor /usr/share/regolith-compositor/init
-exec --no-startup-id $i3-wm.program.compositor
+#set_from_resource $i3-wm.program.compositor i3-wm.program.compositor /usr/share/regolith-compositor/init
+#exec --no-startup-id $i3-wm.program.compositor
 
-#exec --no-starup-id compton --config /etc/regolith/compton/config
+exec compton
 
 # Start Rofication for notifications
 set_from_resource $i3-wm.program.notifications i3-wm.program.notifications /usr/bin/rofication-daemon
