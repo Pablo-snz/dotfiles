@@ -479,34 +479,11 @@ bar {
 i3bar_command i3bar -t
 status_command i3status
 position top
-
-## please set your primary output first. Example: 'xrandr --output eDP1 --primary'
-#	tray_output primary
-#	tray_output eDP1
-
 bindsym button4 nop
 bindsym button5 nop
-#   font xft:URWGothic-Book 11
 strip_workspace_numbers yes
 
 colors {
-#background #222D31
-# OLD --> 2e3440
-# Flores color --> 343748
-#background #312d38			
-statusline #F9FAF9
-#statusline #696969	
-#separator  #454947
-#separator #312d38
-
-#                      border  backgr. text
-#        active_workspace   #595B5B #353836 #FDF6E3
-#        focused_workspace  #F9FAF9 #16a085 #292F34
-#        inactive_workspace #595B5B #222D31 #EEE8D5
-#        binding_mode       #16a085 #2C2C2C #F9FAF9
-#        urgent_workspace   #16a085 #FDF6E3 #E5201D
-
-#		 ######################## PARA IMAGEN DEL LOTUS
 	 background #00000000	
 	 separator #00000000
 	 active_workspace   #595B5B #353836 #292F34
@@ -514,23 +491,6 @@ statusline #F9FAF9
 	 inactive_workspace #00000000 #00000000 #C1BEBA
 	 binding_mode       #16a085 #2C2C2C #F9FAF9
 	 urgent_workspace   #16a085 #FDF6E3 #E5201D
-
-#		 ######################## PARA IMAGEN DE Flores color
-#		background #333647	
-#		separator #333647
-#		active_workspace   #595B5B #353836 #292F34
-#		focused_workspace  #333647 #333647 #FFFFFF 
-#		inactive_workspace #333647 #333647 #C1BEBA
-#		binding_mode       #16a085 #2C2C2C #F9FAF9
-#		urgent_workspace   #16a085 #FDF6E3 #E5201D
-
-#   	background #454a55	
-#		separator #454a55
-#		active_workspace   #595B5B #353836 #292F34
-#		focused_workspace  #454a55 #454a55 #FFFFFF 
-#		inactive_workspace #454a55 #454a55 #C1BEBA
-#		binding_mode       #16a085 #2C2C2C #F9FAF9
-#		urgent_workspace   #16a085 #FDF6E3 #E5201D
 }
 }
 
