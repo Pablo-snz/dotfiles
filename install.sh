@@ -47,15 +47,15 @@ instalationMain() { \
 
 
 # dialog
-sudo apt -y install dialog > /dev/null 2>&1;
+sudo apt -y install dialog;
 dialog --title "Instalacion" --infobox "Instalando curl" 5 70
 # curl
 sudo apt -y install curl > /dev/null 2>&1;
 dialog --title "Instalacion" --infobox "Instalando snap" 5 70
 # snap
 sudo apt -y install snapd > /dev/null 2>&1;
-dialog --title "Instalacion" --infobox " Añadiendo PPA de Regolith" 5 70
 # Regolith
+dialog --title "Instalacion" --infobox " Añadiendo PPA de Regolith" 5 70
 sudo add-apt-repository ppa:regolith-linux/release -y > /dev/null 2>&1;
 dialog --title "Instalacion" --infobox "Instalando Regolith" 5 70
 sudo apt -y install regolith-desktop > /dev/null 2>&1;
@@ -99,8 +99,7 @@ xrdb .Xresources-regolith
 dialog --title "Poniendo la terminal bonita" --infobox "Cambiando Bash por zsh \n Instalando zsh" 5 70
 sudo apt -y install zsh > /dev/null 2>&1;
 dialog --title "Poniendo la terminal bonita" --infobox "Cambiando Bash por zsh \n Configurando zsh por defecto" 5 70
-chsh -s $(which zsh)
-zsh
+#chsh -s $(which zsh)
 dialog --title "Poniendo la terminal bonita" --infobox "Cambiando Bash por zsh \n Instalando Oh My zsh" 5 70
 
 git clone https://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
@@ -110,31 +109,31 @@ cp regolith/.zshrc $HOME/.zshrc
 
 # Fondo
 dialog --title "Cambiando BG" --infobox "hojas verdes" 5 70
-mv themes/background/bj.jpg $HOME/.local/share/backgrounds/j.jpg
-gsettings set org.gnome.desktop.background picture-uri file://$HOME/.local/share/backgrounds
+cp themes/background/bj.jpg $HOME/.local/share/backgrounds/j.jpg
+gsettings set org.gnome.desktop.background picture-uri file://$HOME/.local/share/backgrounds/j.jpg
 
 # korla
-dialog --title "Instalando Tema" --infobox "korla" 
+dialog --title "Instalando Tema" --infobox "korla" 5 70
 mkdir -p $HOME/.local/share/icons
 cd $HOME/.local/share/icons
 git clone https://github.com/bikass/korla.git
 
 
 # Qogir-theme
-dialog --title "Instalando Tema" --infobox "Qogir-dark" 
+dialog --title "Instalando Tema" --infobox "Qogir-dark" 5 70
 cd /tmp
 git clone https://github.com/vinceliuice/Qogir-theme.git
 cd Qogir-theme
 ./install.sh -c dark -t standard 
 
 # Whitesur cursors
-dialog --title "Instalando Tema" --infobox "WhiteSur" 
+dialog --title "Instalando Tema" --infobox "WhiteSur" 5 70
 cd /tmp
 git clone https://github.com/vinceliuice/WhiteSur-cursors.git
 cd WhiteSur-cursors
 ./install
 
-dialog --title "Instalando Tema" --infobox "Acabando" 
+dialog --title "Instalando Tema" --infobox "Acabando" 5 70
 
 # Tema de GTK
 sudo echo "[Settings]
@@ -170,6 +169,4 @@ cd $HOME/Descargas || cd $HOME/Downloads
 
 curl https://repo.anaconda.com/archive/Anaconda3-2020.02-Linux-x86_64.sh > anaconda.sh
 
-zsh anaconda.sh
-
-killall gnome-session-binary
+chsh -s $(which zsh)
