@@ -1,6 +1,12 @@
 # !/bin/sh
+read -p "Estás ejecutando el script desde el directorio del repositorio original [N|y] " yn
+case $yn in
+    [Yy]* ) ;;
+    [Nn]* ) exit;;
+	* ) exit;;
+esac
 
-# Functoins
+
 installPkg(){
 	sudo apt -y install $1 > /dev/null 2>&1;
 }
@@ -40,33 +46,29 @@ instalationMain() { \
 	done < /tmp/programs.csv ;}
 
 
-
-#Script
-
-read -p "Are you running the script from the repository directory? [N|y] " yn
-case $yn in
-    [Yy]* ) ;;
-    [Nn]* ) exit;;
-	* ) exit;;
-esac
-
-
+# dialog
 sudo apt -y install dialog > /dev/null 2>&1;
 dialog --title "Instalacion" --infobox "Instalando curl" 5 70
+# curl
 sudo apt -y install curl > /dev/null 2>&1;
 dialog --title "Instalacion" --infobox "Instalando snap" 5 70
+# snap
 sudo apt -y install snapd > /dev/null 2>&1;
 dialog --title "Instalacion" --infobox " Añadiendo PPA de Regolith" 5 70
+# Regolith
 sudo add-apt-repository ppa:regolith-linux/release -y > /dev/null 2>&1;
 dialog --title "Instalacion" --infobox "Instalando Regolith" 5 70
 sudo apt -y install regolith-desktop > /dev/null 2>&1;
 
-#i3-config
+# Instalacion paquetes del CSV
+instalationMain
+
+# i3-config
 dialog --title "Creando directorio" --infobox "Directorio Regolith" 5 70
 mkdir -p $HOME/.config/regolith/i3 > /dev/null 2>&1;
 cp regolith/config/regolith/i3/config $HOME/.config/regolith/i3/config #> /dev/null 2>&1;
 
-#compton
+# compton
 dialog --title "Creando directorio" --infobox "Directorio Compton" 5 70
 
 mkdir -p $HOME/.config/regolith/compton > /dev/null 2>&1;
@@ -74,25 +76,26 @@ mkdir -p /usr/share/regolith-compositor/init;
 sudo cp regolith/regolith-compositor/init /usr/share/regolith-compositor/init #> /dev/null 2>&1;
 cp regolith/config/regolith/compton/config $HOME/.config/regolith/compton/config #> /dev/null 2>&1;
 
-#i3-status
+# i3-status
 dialog --title "Creando directorio" --infobox "Directorio i3status" 5 70
 
 mkdir -p $HOME/.config/i3status > /dev/null 2>&1;
 cp regolith/config/i3status/config $HOME/.config/i3status/config #> /dev/null 2>&1;
 
-#themes
+# Temas
 dialog --title "Creando directorio" --infobox "Directorio backgrounds" 5 70
 
 mkdir -p $HOME/backgrounds #> /dev/null 2>&1;
 cp themes/background/bg.jpg $HOME/backgrounds/bg.jpg #> /dev/null 2>&1;
 
-#TODO: Añadir configuracion de Xresources.
+# Xresources
 dialog --title "Poniendo la terminal bonita" --infobox "Xresources" 5 70
 
+# Fondo
 cp regolith/Xresources-regolith $HOME/.Xresources-regolith
 xrdb .Xresources-regolith
 
-## Añadir oh my zsh
+# oh my zsh
 dialog --title "Poniendo la terminal bonita" --infobox "Cambiando Bash por zsh \n Instalando zsh" 5 70
 sudo apt install zsh
 dialog --title "Poniendo la terminal bonita" --infobox "Cambiando Bash por zsh \n Configurando zsh por defecto" 5 70
@@ -104,11 +107,27 @@ git clone https://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
 mv $HOME/.zshrc $HOME/.zshrcBefore
 cp regolith/.zshrc $HOME/.zshrc
 
-#Descargamos el tema WhiteSur de iconos
+mv themes/background/bj.jpg $HOME/.local/share/backgrounds/j.jpg
+gsettings set org.gnome.desktop.background picture-uri file://$HOME/.local/share/backgrounds
+# korla
+mkdir -p $HOME/.local/share/icons
+cd $HOME/.local/share/icons
+git clone https://github.com/bikass/korla.git
 
-#Descargamos el tema Breeze
 
-#Cambiamos el tema de GTK
+# Qogir-theme
+cd /tmp
+git clone https://github.com/vinceliuice/Qogir-theme.git
+cd Qogir-theme
+./install.sh -c dark -t standard 
+
+# Whitesur cursors
+cd /tmp
+git clone https://github.com/vinceliuice/WhiteSur-cursors.git
+cd WhiteSur-cursors
+./install
+
+# Tema de GTK
 sudo echo "[Settings]
 gtk-application-prefer-dark-theme=0
 gtk-button-images=1
@@ -116,33 +135,32 @@ gtk-cursor-theme-name=WhiteSur-cursors
 gtk-decoration-layout=close,minimize,maximize:
 gtk-enable-animations=1
 gtk-font-name=Noto Sans,  10
-gtk-icon-theme-name=WhiteSur
+gtk-icon-theme-name=korla
 gtk-menu-images=1
 gtk-primary-button-warps-slider=0
-gtk-theme-name=Breeze
+gtk-theme-name=Qogir-dark
 gtk-toolbar-style=GTK_TOOLBAR_BOTH_HORIZ" > ~/.config/gtk-3.0/settings.ini
 
-#Instalamos paquetes
-instalationMain
 
-#Enable tap to click
-#echo 'Section "InputClass"
-#	        Identifier "libinput touchpad catchall"
-#	        MatchIsTouchpad "on"
-#	        MatchDevicePath "/dev/input/event*"
-#	        Driver "libinput"
-#			# Enable left mouse button by tapping
-#			Option "Tapping" "on"
+# tap to click
+echo 'Section "InputClass"
+	        Identifier "libinput touchpad catchall"
+	        MatchIsTouchpad "on"
+	        MatchDevicePath "/dev/input/event*"
+	        Driver "libinput"
+			# Enable left mouse button by tapping
+			Option "Tapping" "on"
 #	 EndSection' > /etc/X11/xorg.conf.d/40-libinput.conf
 
 #TODO: Disable double tap (?)
 
-#Instalacion anaconda #
+# Instalacion anaconda #
 dialog --title "Instalacion" --infobox "Instalando \`Anaconda\`" 5 70
 
 cd $HOME/Descargas || cd $HOME/Downloads
 
 curl https://repo.anaconda.com/archive/Anaconda3-2020.02-Linux-x86_64.sh > anaconda.sh
 
+zsh anaconda.sh
 
 killall gnome-session-binary
