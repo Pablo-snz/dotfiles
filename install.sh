@@ -97,9 +97,10 @@ xrdb .Xresources-regolith
 
 # oh my zsh
 dialog --title "Poniendo la terminal bonita" --infobox "Cambiando Bash por zsh \n Instalando zsh" 5 70
-sudo apt install zsh
+sudo apt -y install zsh > /dev/null 2>&1;
 dialog --title "Poniendo la terminal bonita" --infobox "Cambiando Bash por zsh \n Configurando zsh por defecto" 5 70
 chsh -s $(which zsh)
+zsh
 dialog --title "Poniendo la terminal bonita" --infobox "Cambiando Bash por zsh \n Instalando Oh My zsh" 5 70
 
 git clone https://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
@@ -107,25 +108,33 @@ git clone https://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
 mv $HOME/.zshrc $HOME/.zshrcBefore
 cp regolith/.zshrc $HOME/.zshrc
 
+# Fondo
+dialog --title "Cambiando BG" --infobox "hojas verdes" 5 70
 mv themes/background/bj.jpg $HOME/.local/share/backgrounds/j.jpg
 gsettings set org.gnome.desktop.background picture-uri file://$HOME/.local/share/backgrounds
+
 # korla
+dialog --title "Instalando Tema" --infobox "korla" 
 mkdir -p $HOME/.local/share/icons
 cd $HOME/.local/share/icons
 git clone https://github.com/bikass/korla.git
 
 
 # Qogir-theme
+dialog --title "Instalando Tema" --infobox "Qogir-dark" 
 cd /tmp
 git clone https://github.com/vinceliuice/Qogir-theme.git
 cd Qogir-theme
 ./install.sh -c dark -t standard 
 
 # Whitesur cursors
+dialog --title "Instalando Tema" --infobox "WhiteSur" 
 cd /tmp
 git clone https://github.com/vinceliuice/WhiteSur-cursors.git
 cd WhiteSur-cursors
 ./install
+
+dialog --title "Instalando Tema" --infobox "Acabando" 
 
 # Tema de GTK
 sudo echo "[Settings]
