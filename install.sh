@@ -109,7 +109,7 @@ cp regolith/.zshrc $HOME/.zshrc
 
 # Fondo
 dialog --title "Cambiando BG" --infobox "hojas verdes" 5 70
-cp themes/background/bj.jpg $HOME/.local/share/backgrounds/j.jpg
+cp themes/background/bg.jpg $HOME/.local/share/backgrounds/j.jpg
 gsettings set org.gnome.desktop.background picture-uri file://$HOME/.local/share/backgrounds/j.jpg
 
 # korla
