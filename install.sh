@@ -57,11 +57,11 @@ sudo apt -y install snapd >> logs;
 # Regolith
 dialog --title "Instalacion" --infobox " Añadiendo PPA de Regolith" 5 70
 sudo add-apt-repository ppa:regolith-linux/release -y >> logs;
-dialog --title "Instalacion" --infobox "Instalando Regolith" 5 70
+dialog --title "Instalacion" --infobox "Instalando Regolith Esto puede tardar un poco.. " 5 70
 sudo apt -y install regolith-desktop >> logs;
 
 # Instalacion paquetes del CSV
-instalationMain
+#instalationMain
 
 # i3-config
 dialog --title "Creando directorio" --infobox "Directorio Regolith" 5 70
@@ -72,7 +72,7 @@ cp regolith/config/regolith/i3/config $HOME/.config/regolith/i3/config #> /dev/n
 dialog --title "Creando directorio" --infobox "Directorio Compton" 5 70
 
 mkdir -p $HOME/.config/regolith/compton > /dev/null 2>&1;
-mkdir -p /usr/share/regolith-compositor/init;
+sudo mkdir -p /usr/share/regolith-compositor;
 sudo cp regolith/regolith-compositor/init /usr/share/regolith-compositor/init #> /dev/null 2>&1;
 cp regolith/config/regolith/compton/config $HOME/.config/regolith/compton/config #> /dev/null 2>&1;
 
@@ -100,7 +100,7 @@ dialog --title "Poniendo la terminal bonita" --infobox "Xresources" 5 70
 
 # Fondo
 cp regolith/Xresources-regolith $HOME/.Xresources-regolith
-xrdb .Xresources-regolith
+xrdb ~/.Xresources-regolith
 
 # oh my zsh
 dialog --title "Poniendo la terminal bonita" --infobox "Cambiando Bash por zsh \n Instalando zsh" 5 70
@@ -116,6 +116,7 @@ cp regolith/.zshrc $HOME/.zshrc
 
 # Fondo
 dialog --title "Cambiando BG" --infobox "hojas verdes" 5 70
+mkdir -p $HOME/.local/share/backgrounds/
 cp themes/background/bg.jpg $HOME/.local/share/backgrounds/j.jpg
 gsettings set org.gnome.desktop.background picture-uri file://$HOME/.local/share/backgrounds/j.jpg
 
@@ -138,7 +139,7 @@ dialog --title "Instalando Tema" --infobox "WhiteSur" 5 70
 cd /tmp
 git clone https://github.com/vinceliuice/WhiteSur-cursors.git
 cd WhiteSur-cursors
-./install
+./install.sh
 
 dialog --title "Instalando Tema" --infobox "Acabando" 5 70
 
@@ -156,9 +157,9 @@ gtk-primary-button-warps-slider=0
 gtk-theme-name=Qogir-dark
 gtk-toolbar-style=GTK_TOOLBAR_BOTH_HORIZ" > ~/.config/gtk-3.0/settings.ini
 
-mkdir -p /etc/X11/xorg.conf.d/40-libinput.conf
+sudo mkdir -p /etc/X11/xorg.conf.d/40-libinput.conf
 # tap to click
-echo 'Section "InputClass"
+sudo echo 'Section "InputClass"
 	        Identifier "libinput touchpad catchall"
 	        MatchIsTouchpad "on"
 	        MatchDevicePath "/dev/input/event*"
@@ -169,7 +170,7 @@ echo 'Section "InputClass"
 
 
 # Instalacion anaconda #
-dialog --title "Instalacion" --infobox "Instalando \`Anaconda\`" 5 70
+dialog --title "Cambiando a ZSH" --infobox "Poniendo por defecto zsh" 5 70
 
 cd $HOME/Descargas || cd $HOME/Downloads
 
