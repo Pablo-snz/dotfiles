@@ -61,7 +61,7 @@ dialog --title "Instalacion" --infobox "Instalando Regolith Esto puede tardar un
 sudo apt -y install regolith-desktop >> logs;
 
 # Instalacion paquetes del CSV
-#instalationMain
+instalationMain
 
 # i3-config
 dialog --title "Creando directorio" --infobox "Directorio Regolith" 5 70
