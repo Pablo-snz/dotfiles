@@ -169,12 +169,17 @@ sudo echo 'Section "InputClass"
 #	 EndSection' > /etc/X11/xorg.conf.d/40-libinput.conf
 
 
-# Instalacion anaconda #
-dialog --title "Cambiando a ZSH" --infobox "Poniendo por defecto zsh" 5 70
+# Instalacion anaconda 
 
 cd $HOME/Descargas || cd $HOME/Downloads
 
+read -p "Descargar anaconda? [N|y] " yn
+case $yn in
+    [Yy]* ) curl https://repo.anaconda.com/archive/Anaconda3-2020.02-Linux-x86_64.sh > anaconda.sh;;
+    [Nn]* ) ;;
+	* );;
+esac
 
-#curl https://repo.anaconda.com/archive/Anaconda3-2020.02-Linux-x86_64.sh > anaconda.sh
+dialog --title "Cambiando a ZSH" --infobox "Poniendo por defecto zsh" 5 70
 
 chsh -s $(which zsh)
