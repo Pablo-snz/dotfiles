@@ -125,6 +125,9 @@ dialog --title "Instalando Tema" --infobox "korla" 5 70
 mkdir -p $HOME/.local/share/icons
 cd $HOME/.local/share/icons
 git clone https://github.com/bikass/korla.git
+mv korla korla2
+cp -r korla2/*
+rm -rf f* i* L* R* korla2/
 
 
 # Qogir-theme
@@ -169,7 +172,7 @@ sudo echo 'Section "InputClass"
 #	 EndSection' > /etc/X11/xorg.conf.d/40-libinput.conf
 
 
-# Instalacion anaconda 
+# Instalacion anaconda
 
 cd $HOME/Descargas || cd $HOME/Downloads
 
