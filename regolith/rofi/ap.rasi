@@ -1,0 +1,116 @@
+
+* {
+	base00: #2F3E46;
+
+	base0D: #52796F;
+	base0D: #52796F;
+
+	base03: #84A98C;
+	base07: #CAD2C5;
+
+
+	base0B: #C3E88D;
+	base0F: #FF5370;
+
+	/*URL https://coolors.co/cad2c5-84a98c-52796f-354f52-2f3e46 */
+
+	spacing: 0;
+	background-color: transparent;
+
+	font: "SF Pro Text Regular 11";
+}
+
+window {
+	transparency: "real";
+	fullscreen: true;
+	background-color: #2F3E46F2; /*base00 + CC (80% opacity)*/
+}
+
+mainbox {
+	spacing: 30px;
+	padding: 30px 0;
+	border: 0px;
+	border-color: @base0D;
+}
+
+inputbar {
+	padding: 0 30px;
+	children: [prompt, textbox-prompt-colon, entry, case-indicator];
+}
+
+prompt {
+	text-color: @base0D;
+}
+
+textbox-prompt-colon {
+	expand: false;
+	str: ":";
+	margin: 0 1ch 0 0;
+	text-color: @base0D;
+}
+
+entry {
+	text-color: @base07;
+}
+
+case-indicator {
+	text-color: @base0F;
+}
+
+mode-switcher, message {
+	border: 0px 0;
+	border-color: @base0D;
+}
+
+button, textbox {
+	background-color: @base03;
+	text-color: @base07;
+	padding: 5px;
+}
+
+button selected {
+	background-color: @base0D;
+}
+
+listview {
+	scrollbar: true;
+	margin: 0 10px 0 30px;
+}
+
+scrollbar {
+	background-color: @base03;
+	handle-color: @base0D;
+	handle-width: 10px;
+	border: 0 1px;
+	border-color: @base0D;
+	margin: 0 0 0 20px;
+}
+
+element {
+	padding: 5px;
+	highlight: bold underline;
+}
+
+element normal {
+	background-color: transparent;
+}
+
+element selected {
+	background-color: @base0D;
+}
+
+element alternate {
+	/*background-color: @base03;*/
+}
+
+element normal normal, element selected normal, element alternate normal {
+	text-color: @base07;
+}
+
+element normal urgent, element selected urgent, element alternate urgent {
+	text-color: @base0F;
+}
+
+element normal active, element selected active, element alternate active {
+	text-color: @base0B;
+}

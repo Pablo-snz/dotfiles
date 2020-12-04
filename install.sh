@@ -6,31 +6,31 @@ case $yn in
 	* ) exit;;
 esac
 
-
+touch ~/logs
 installPkg(){
-	sudo apt -y install $1 > /dev/null 2>&1;
+	sudo apt -y install $1 >> logs;
 }
 
 installSnap(){
-	sudo snap -y install $1 > /dev/null 2>&1;
+	sudo snap install $1 --classic >> logs;
 }
 
 installGit() {
-	git clone $1 > /dev/null 2>&1;
+	git clone $1 >> logs;
 	#TODO: instalacion de repositorios
 }
 
-aptInstall() { 
+aptInstall() {
 	dialog --title "Instalacion" --infobox "Instalando \`$1\`" 5 70
 	installPkg "$1"
 	}
 
-snapInstall() { 
+snapInstall() {
 	dialog --title "Instalacion" --infobox "Instalando \`$1\`" 5 70
 	installSnap "$1"
 	}
 
-gitInstall() { 
+gitInstall() {
 	dialog --title "Instalacion" --infobox "Instalando \`$1\`" 5 70
 	installGit "$1"
 	}
@@ -50,15 +50,15 @@ instalationMain() { \
 sudo apt -y install dialog;
 dialog --title "Instalacion" --infobox "Instalando curl" 5 70
 # curl
-sudo apt -y install curl > /dev/null 2>&1;
+sudo apt -y install curl >> logs;
 dialog --title "Instalacion" --infobox "Instalando snap" 5 70
 # snap
-sudo apt -y install snapd > /dev/null 2>&1;
+sudo apt -y install snapd >> logs;
 # Regolith
 dialog --title "Instalacion" --infobox " Añadiendo PPA de Regolith" 5 70
-sudo add-apt-repository ppa:regolith-linux/release -y > /dev/null 2>&1;
+sudo add-apt-repository ppa:regolith-linux/release -y >> logs;
 dialog --title "Instalacion" --infobox "Instalando Regolith" 5 70
-sudo apt -y install regolith-desktop > /dev/null 2>&1;
+sudo apt -y install regolith-desktop >> logs;
 
 # Instalacion paquetes del CSV
 instalationMain
@@ -81,6 +81,13 @@ dialog --title "Creando directorio" --infobox "Directorio i3status" 5 70
 
 mkdir -p $HOME/.config/i3status > /dev/null 2>&1;
 cp regolith/config/i3status/config $HOME/.config/i3status/config #> /dev/null 2>&1;
+
+# Rofi
+dialog --title "Instalando Rofi" --infobox "" 5 70
+sudo apt -y install rofi >> logs;
+dialog --title "Configurando Rofi" --infobox "Creando directorio" 5 70
+mkdir -p ~/.config/rofi/
+cp -r regolith/rofi/* ~/.config/rofi/
 
 # Temas
 dialog --title "Creando directorio" --infobox "Directorio backgrounds" 5 70
@@ -124,7 +131,7 @@ dialog --title "Instalando Tema" --infobox "Qogir-dark" 5 70
 cd /tmp
 git clone https://github.com/vinceliuice/Qogir-theme.git
 cd Qogir-theme
-./install.sh -c dark -t standard 
+./install.sh -c dark -t standard
 
 # Whitesur cursors
 dialog --title "Instalando Tema" --infobox "WhiteSur" 5 70
@@ -149,7 +156,7 @@ gtk-primary-button-warps-slider=0
 gtk-theme-name=Qogir-dark
 gtk-toolbar-style=GTK_TOOLBAR_BOTH_HORIZ" > ~/.config/gtk-3.0/settings.ini
 
-
+mkdir -p /etc/X11/xorg.conf.d/40-libinput.conf
 # tap to click
 echo 'Section "InputClass"
 	        Identifier "libinput touchpad catchall"
@@ -160,13 +167,13 @@ echo 'Section "InputClass"
 			Option "Tapping" "on"
 #	 EndSection' > /etc/X11/xorg.conf.d/40-libinput.conf
 
-#TODO: Disable double tap (?)
 
 # Instalacion anaconda #
 dialog --title "Instalacion" --infobox "Instalando \`Anaconda\`" 5 70
 
 cd $HOME/Descargas || cd $HOME/Downloads
 
-curl https://repo.anaconda.com/archive/Anaconda3-2020.02-Linux-x86_64.sh > anaconda.sh
+
+#curl https://repo.anaconda.com/archive/Anaconda3-2020.02-Linux-x86_64.sh > anaconda.sh
 
 chsh -s $(which zsh)

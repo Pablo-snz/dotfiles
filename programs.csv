@@ -4,10 +4,10 @@ a, git
 a, compton
 a, rxvt-unicode
 s, spotify
-s, pycharm-community
+s, sublime-text
 a, vim
 a, libgl1-mesa-glx
-a, libegl1-mesa 
+a, libegl1-mesa
 a, libxrandr2
 a, libxrandr2
 a, libxss1
