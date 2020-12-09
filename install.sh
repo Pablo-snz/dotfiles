@@ -126,7 +126,7 @@ mkdir -p $HOME/.local/share/icons
 cd $HOME/.local/share/icons
 git clone https://github.com/bikass/korla.git
 mv korla korla2
-cp -r korla2/*
+cp -r korla2/* .
 rm -rf f* i* L* R* korla2/
 
 
