@@ -2,7 +2,7 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="$HOME/.oh-my-zsh"
+export ZSH="/home/pablo-snz/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -97,7 +97,26 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-#
-alias python="python3"
-alias pip="pip3"
-source /etc/zsh_command_not_found
+alias vim="nvim"
+
+# Cursor linea recta:
+#echo -e "\033[4 q"
+#clear
+#echo -e "\033[? 25 t"
+
+## >>> conda initialize >>>
+## !! Contents within this block are managed by 'conda init' !!
+#__conda_setup="$('/home/pablo-snz/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+#if [ $? -eq 0 ]; then
+#    eval "$__conda_setup"
+#else
+#    if [ -f "/home/pablo-snz/anaconda3/etc/profile.d/conda.sh" ]; then
+#        . "/home/pablo-snz/anaconda3/etc/profile.d/conda.sh"
+#    else
+#        export PATH="/home/pablo-snz/anaconda3/bin:$PATH"
+#    fi
+#fi
+#unset __conda_setup
+## <<< conda initialize <<<
+alias clear='/bin/clear'
+alias cond='source ~/.zshrcond'
