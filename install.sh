@@ -7,9 +7,10 @@ case $yn in
 esac
 
 touch ~/logs
+
 installPkg(){
-	sudo apt -y install $1 >> logs;
-}
+  pacman --noconfirm --needed -S "$1" >/dev/null 2>&1 ;
+	}
 
 installSnap(){
 	sudo snap install $1 --classic >> logs;
