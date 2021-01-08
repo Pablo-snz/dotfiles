@@ -46,8 +46,10 @@ bindsym $mod+q kill
 bindsym $mod+space exec rofi -show drun -theme ~/.config/rofi/slate.rasi -icon-theme "Korla" -show-icons -lines 8 
 
 
-bindsym $mod+Tab exec rofi -show window -theme ~/workspaces/rofi/1080p/applets/menu/configs/square/backlight.rasi -icon-theme "Korla" -show-icons -lines 8 
-# launch categorized menu
+bindsym $mod+Tab exec rofi -show window -theme ~/.config/rofi/slate.rasi -icon-theme "Korla" -show-icons -lines 8 
+
+
+#launch categorized menu
 # aqui hay cosas de bluetooth
 bindsym $mod+z exec --no-startup-id morc_menu
 
@@ -128,7 +130,7 @@ bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
 
 # toggle tiling / floating
-bindsym $mod+Shift+space floating toggle
+bindsym $mod+plus floating toggle
 
 # change focus between tiling / floating windows
 bindsym $mod+Shift+a+space focus mode_toggle
@@ -178,16 +180,16 @@ bindsym $mod+9 workspace number $ws9
 bindsym $mod+0 workspace number $ws10
 
 # Move focused container to workspace
-bindsym $mod+Ctrl+1 move container to workspace $ws1
-bindsym $mod+Ctrl+2 move container to workspace $ws2
-bindsym $mod+Ctrl+3 move container to workspace $ws3
-bindsym $mod+Ctrl+4 move container to workspace $ws4
-bindsym $mod+Ctrl+5 move container to workspace $ws5
-bindsym $mod+Ctrl+6 move container to workspace $ws6
-bindsym $mod+Ctrl+7 move container to workspace $ws7
-bindsym $mod+Ctrl+8 move container to workspace $ws8
-bindsym $mod+Ctrl+9 move container to workspace $ws9
-bindsym $mod+Ctrl+0 move container to workspace $ws10
+# bindsym $mod+Ctrl+1 move container to workspace $ws1
+# bindsym $mod+Ctrl+2 move container to workspace $ws2
+# bindsym $mod+Ctrl+3 move container to workspace $ws3
+# bindsym $mod+Ctrl+4 move container to workspace $ws4
+# bindsym $mod+Ctrl+5 move container to workspace $ws5
+# bindsym $mod+Ctrl+6 move container to workspace $ws6
+# bindsym $mod+Ctrl+7 move container to workspace $ws7
+# bindsym $mod+Ctrl+8 move container to workspace $ws8
+# bindsym $mod+Ctrl+9 move container to workspace $ws9
+# bindsym $mod+Ctrl+0 move container to workspace $ws10
 
 # Move to workspace with focused container
 bindsym $mod+Shift+1 move container to workspace $ws1; workspace $ws1
@@ -445,3 +447,16 @@ mode "$mode_gaps_outer" {
         bindsym Return mode "default"
         bindsym Escape mode "default"
 }
+
+# Cambiar la distribucion de las pantallas
+## Portatil
+bindsym $mod+Ctrl+1 exec sh ~/.screenlayout/portatil.sh
+
+## Pantalla Externa
+bindsym $mod+Ctrl+2 exec sh ~/.screenlayout/grande.sh
+
+## Dos pantallas
+bindsym $mod+Ctrl+3 exec sh ~/.screenlayout/Los\ Vientos.sh
+
+
+
