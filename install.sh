@@ -1,4 +1,5 @@
 # !/bin/sh
+
 read -p "Estás ejecutando el script desde el directorio del repositorio original [N|y] " yn
 case $yn in
     [Yy]* ) ;;
@@ -36,14 +37,14 @@ gitInstall() {
 	}
 
 instalationMain() { \
-	curl -Ls "https://raw.githubusercontent.com/Pablo-snz/dotfiles/main/programs.csv" | sed '/^#/d' > /tmp/programs.csv
+	#curl -Ls "https://raw.githubusercontent.com/Pablo-snz/dotfiles/main/programs.csv" | sed '/^#/d' > /tmp/programs.csv
 	while IFS=, read -r tag program; do
 		case "$tag" in
 			"s") snapInstall "$program";;
 			"a") aptInstall "$program";;
 			"g") gitInstall "$program";;
 		esac
-	done < /tmp/programs.csv ;}
+	done < programs.csv ;}
 
 
 # dialog
@@ -115,10 +116,49 @@ mv $HOME/.zshrc $HOME/.zshrcBefore
 cp regolith/.zshrc $HOME/.zshrc
 
 # Fondo
-dialog --title "Cambiando BG" --infobox "hojas verdes" 5 70
+dialog --title "Cambiando BG" --infobox "black tulip" 5 70
 mkdir -p $HOME/.local/share/backgrounds/
 cp themes/background/bg.jpg $HOME/.local/share/backgrounds/j.jpg
 gsettings set org.gnome.desktop.background picture-uri file://$HOME/.local/share/backgrounds/j.jpg
+
+
+# Instalando fuentes:
+mkdir -p $HOME/.fonts
+cp -r fonts/* $HOME/.fonts/*
+fc-cache -v
+
+# Cambiando las fuentes:
+gsettings set org.gnome.desktop.interface document-font-name 'SF Pro Text 10.5'
+gsettings set org.gnome.desktop.interface font-name 'SF Pro Text 10.5'
+gsettings set org.gnome.desktop.interface monospace-font-name 'Monospace 11'
+
+# tap to click
+gsettings set org.gnome.desktop.peripherals.touchpad tap-to-click true
+
+# Task-warrior y Time-warrior
+cp -r regolith/timetaskwarrior/* $HOME/
+chmod +x $HOME/.task/hooks/on-modify.timewarrior
+
+# dunst
+cp -r regolith/dunst/ $HOME/.config/dunst
+
+# Volume-notifications
+mkdir -p $HOME/.scripts
+cp -r regolith/scripts/* $HOME/.scripts/*
+
+cd /tmp
+git clone https://github.com/multiplexd/brightlight.git
+cd brightlight
+make
+sudo cp brightlight /usr/bin/brightlight
+cd /usr/bin
+sudo chown root brightlight
+sudo chmod u+s brightlight
+
+# Chrome 
+cd /tmp
+wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+sudo dpkg -i google-chrome-stable_current_amd64.deb
 
 # korla
 dialog --title "Instalando Tema" --infobox "korla" 5 70
@@ -129,36 +169,20 @@ mv korla korla2
 cp -r korla2/* .
 rm -rf f* i* L* R* korla2/
 
+gsettings set org.gnome.desktop.interface icon-theme 'kora-light'
 
 # Qogir-theme
-dialog --title "Instalando Tema" --infobox "Qogir-dark" 5 70
+dialog --title "Instalando Tema" --infobox "Qogir-light" 5 70
 cd /tmp
 git clone https://github.com/vinceliuice/Qogir-theme.git
 cd Qogir-theme
-./install.sh -c dark -t standard
+./install.sh -c light -t standard
 
-# Whitesur cursors
-dialog --title "Instalando Tema" --infobox "WhiteSur" 5 70
-cd /tmp
-git clone https://github.com/vinceliuice/WhiteSur-cursors.git
-cd WhiteSur-cursors
-./install.sh
+gsettings set org.gnome.desktop.interface gtk-theme 'Qogir-light'
+
 
 dialog --title "Instalando Tema" --infobox "Acabando" 5 70
 
-# Tema de GTK
-sudo echo "[Settings]
-gtk-application-prefer-dark-theme=0
-gtk-button-images=1
-gtk-cursor-theme-name=WhiteSur-cursors
-gtk-decoration-layout=close,minimize,maximize:
-gtk-enable-animations=1
-gtk-font-name=Noto Sans,  10
-gtk-icon-theme-name=korla
-gtk-menu-images=1
-gtk-primary-button-warps-slider=0
-gtk-theme-name=Qogir-dark
-gtk-toolbar-style=GTK_TOOLBAR_BOTH_HORIZ" > ~/.config/gtk-3.0/settings.ini
 
 sudo mkdir -p /etc/X11/xorg.conf.d/40-libinput.conf
 # tap to click
@@ -174,9 +198,11 @@ sudo echo 'Section "InputClass"
 
 # Instalacion anaconda
 
+sudo rm -rf /tmp/*
+
 cd $HOME/Descargas || cd $HOME/Downloads
 
-read -p "Descargar anaconda? [N|y] " yn
+read -p "Descargar anaconda ahora? [N|y] " yn
 case $yn in
     [Yy]* ) curl https://repo.anaconda.com/archive/Anaconda3-2020.02-Linux-x86_64.sh > anaconda.sh;;
     [Nn]* ) ;;

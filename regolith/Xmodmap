@@ -1,0 +1,5 @@
+keysym XF86MonBrightnessUp = XF86Launch3
+keysym XF86MonBrightnessDown = XF86Launch4
+keysym XF86AudioMute = XF86Launch5
+keysym XF86AudioLowerVolume = XF86Launch6
+keysym XF86AudioRaiseVolume = XF86Launch7

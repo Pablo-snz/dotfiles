@@ -1,0 +1,58 @@
+# [Created by task 2.5.1 2/11/2021 20:05:49]
+# Taskwarrior program configuration file.
+# For more documentation, see http://taskwarrior.org or try 'man task', 'man task-color',
+# 'man task-sync' or 'man taskrc'
+
+# Here is an example of entries that use the default, override and blank values
+#   variable=foo   -- By specifying a value, this overrides the default
+#   variable=      -- By specifying no value, this means no default
+#   #variable=foo  -- By commenting out the line, or deleting it, this uses the default
+
+# Use the command 'task show' to see all defaults and overrides
+
+# Files
+data.location=~/.task
+
+# Color theme (uncomment one to use)
+#include /usr/share/taskwarrior/light-16.theme
+#include /usr/share/taskwarrior/light-256.theme
+#include /usr/share/taskwarrior/dark-16.theme
+#include /usr/share/taskwarrior/dark-256.theme
+#include /usr/share/taskwarrior/dark-red-256.theme
+#include /usr/share/taskwarrior/dark-green-256.theme
+#include /usr/share/taskwarrior/dark-blue-256.theme
+#include /usr/share/taskwarrior/dark-violets-256.theme
+#include /usr/share/taskwarrior/dark-yellow-green.theme
+#include /usr/share/taskwarrior/dark-gray-256.theme
+#include /usr/share/taskwarrior/dark-gray-blue-256.theme
+#include /usr/share/taskwarrior/solarized-dark-256.theme
+#include /usr/share/taskwarrior/solarized-light-256.theme
+#include /usr/share/taskwarrior/no-color.theme
+# Show the tracking of time
+journal.time=on
+# Do not use color
+color=off
+
+# Shortcuts
+alias.dailystatus=status:completed end.after:today all
+alias.punt=modify wait:1d
+alias.someday=mod +someday wait:someday
+
+# default start on Sunday - I temporarily had mine start on Monday and went back to Sunday
+# weekstart=monday
+
+# Make searches case insensitive, personal preference
+search.case.sensitive=no
+
+# Set daily burndown as default
+alias.burndown=burndown.daily
+
+# Indicate the active task in reports
+active.indicator=>
+
+# task ready report default with custom columns
+default.command=ready
+#report.ready.columns=id,priority,start.active,depends.indicator,project,due.relative,description.desc
+#report.ready.labels= ID,Priority,Depends, Project, Due, Description,
+report.ready.columns=id,start.active,priority,depends.indicator,project,due.relative,description.desc
+report.ready.labels= ,,P,Depends, Project, Due, Description
