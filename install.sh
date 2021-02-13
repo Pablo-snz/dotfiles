@@ -46,9 +46,7 @@ instalationMain() { \
 		esac
 	done < programs.csv ;}
 
-
-# dialog
-sudo apt -y install dialog
+sudo apt upgrade
 
 # curl
 sudo apt -y install curl
@@ -64,21 +62,21 @@ sudo apt -y install regolith-desktop
 instalationMain
 
 # i3-config
-mkdir -p $HOME/.config/regolith/i3 > /dev/null 2>&1;
+mkdir -p $HOME/.config/regolith/i3
 cp regolith/config/regolith/i3/config $HOME/.config/regolith/i3/config #> /dev/null 2>&1;
 
 # compton
-mkdir -p $HOME/.config/regolith/compton > /dev/null 2>&1;
+mkdir -p $HOME/.config/regolith/compton
 sudo mkdir -p /usr/share/regolith-compositor;
 sudo cp regolith/regolith-compositor/init /usr/share/regolith-compositor/init #> /dev/null 2>&1;
 cp regolith/config/regolith/compton/config $HOME/.config/regolith/compton/config #> /dev/null 2>&1;
 
 # i3-status
-mkdir -p $HOME/.config/i3status > /dev/null 2>&1;
+mkdir -p $HOME/.config/i3status
 cp regolith/config/i3status/config $HOME/.config/i3status/config #> /dev/null 2>&1;
 
 # Rofi
-sudo apt -y install rofi >> logs;
+sudo apt -y install rofi
 mkdir -p ~/.config/rofi/
 cp -r regolith/rofi/* ~/.config/rofi/
 
@@ -94,7 +92,7 @@ cp regolith/Xresources-regolith $HOME/.Xresources-regolith
 xrdb ~/.Xresources-regolith
 
 # oh my zsh
-sudo apt -y install zsh > /dev/null 2>&1;
+sudo apt -y install zsh
 
 git clone https://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
 
