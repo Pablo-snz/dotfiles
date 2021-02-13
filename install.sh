@@ -122,6 +122,12 @@ chmod +x $HOME/.task/hooks/on-modify.timewarrior
 # dunst
 cp -r regolith/dunst/ $HOME/.config/dunst
 
+
+# Firefox
+mkdir -p $HOME/.mozilla/firefox/*.default-release/chrome/
+cp themes/userChrome.css $HOME/.mozilla/firefox/*.default-release/chrome/userChrome.css
+
+
 # Volume-notifications
 mkdir -p $HOME/.scripts
 cp -r regolith/scripts/* $HOME/.scripts/
@@ -135,14 +141,11 @@ cd /usr/bin
 sudo chown root brightlight
 sudo chmod u+s brightlight
 
+
 # Chrome 
 cd /tmp
 wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 sudo dpkg -i google-chrome-stable_current_amd64.deb
-
-# Firefox
-mkdir -p $HOME/.mozilla/firefox/*.default-release/chrome/
-cp themes/userChrome.css $HOME/.mozilla/firefox/*.default-release/chrome/userChrome.css
 
 # korla
 mkdir -p $HOME/.local/share/icons
