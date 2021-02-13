@@ -124,7 +124,6 @@ cp -r regolith/dunst/ $HOME/.config/dunst
 
 
 # Firefox
-mkdir -p $HOME/.mozilla/firefox/*.default-release/chrome/
 cp themes/userChrome.css $HOME/.mozilla/firefox/*.default-release/chrome/userChrome.css
 
 
