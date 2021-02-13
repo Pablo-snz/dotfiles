@@ -540,7 +540,7 @@ exec --no-startup-id $i3-wm.program.3
 
 #exec xinput set-prop 11 298 1
 #exec xinput set-prop 11 300 0
-#exec --no-startup-id nm-applet
+exec --no-startup-id nm-applet
 
 
 bindsym $mod+Tab exec rofi -show window -mode window -window-thumbnail -theme ~/.config/rofi/rofitheme.rasi
