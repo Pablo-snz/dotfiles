@@ -83,7 +83,7 @@ set_from_resource $rofiTheme rofi.theme /etc/regolith/styles/lascaille/rofi.rasi
 ## Launch // Application // <> Space ##
 set_from_resource $i3-wm.program.launcher.app i3-wm.program.launcher.app rofi -show drun -theme $rofiTheme
 #bindsym $mod+space exec $i3-wm.program.launcher.app
-bindsym $mod+space exec rofi -show drun -theme /home/pablo-snz/.config/rofi/ap.rasi -icon-theme "Korla" -show-icons -lines 8
+bindsym $mod+space exec rofi -show drun -theme ~/.config/rofi/ap.rasi -icon-theme "Korla" -show-icons -lines 8
 ## Launch // Command // <><Shift> Space ##
 set_from_resource $i3-wm.program.launcher.cmd i3-wm.program.launcher.cmd rofi -show run -theme $rofiTheme
 bindsym $mod+Shift+space exec $i3-wm.program.launcher.cmd
@@ -514,7 +514,7 @@ colors {
 #set_from_resource $i3-wm.program.compositor i3-wm.program.compositor /usr/share/regolith-compositor/init
 #exec --no-startup-id $i3-wm.program.compositor
 
-exec compton --config /home/pablo-snz/.config/regolith/compton/config -b
+exec compton --config ~/.config/regolith/compton/config -b
 
 # Start Rofication for notifications
 set_from_resource $i3-wm.program.notifications i3-wm.program.notifications /usr/bin/rofication-daemon
