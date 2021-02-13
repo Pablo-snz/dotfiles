@@ -114,7 +114,7 @@ gsettings set org.gnome.desktop.peripherals.touchpad tap-to-click true
 # Task-warrior y Time-warrior
 cp -r regolith/timetaskwarrior/taskrc $HOME/.taskrc
 mkdir -p $HOME/.task
-cp -r regolith/timetaskwarrior/task/* $HOME/task
+cp -r regolith/timetaskwarrior/task/* $HOME/.task
 mkdir -p $HOME/.timewarrior
 cp -r regolith/timetaskwarrior/timewarrior/* $HOME/.timewarrior
 chmod +x $HOME/.task/hooks/on-modify.timewarrior
@@ -141,7 +141,7 @@ wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 sudo dpkg -i google-chrome-stable_current_amd64.deb
 
 # Firefox
-mkdir -p $HOME.mozilla/firefox/*.default-release/chrome/
+mkdir -p $HOME/.mozilla/firefox/*.default-release/chrome/
 cp themes/userChrome.css $HOME/.mozilla/firefox/*.default-release/chrome/userChrome.css
 
 # korla
@@ -161,20 +161,6 @@ cd Qogir-theme
 ./install.sh -c light -t standard
 
 gsettings set org.gnome.desktop.interface gtk-theme 'Qogir-light'
-
-
-
-
-sudo mkdir -p /etc/X11/xorg.conf.d/
-# tap to click
-sudo echo 'Section "InputClass"
-	        Identifier "libinput touchpad catchall"
-	        MatchIsTouchpad "on"
-	        MatchDevicePath "/dev/input/event*"
-	        Driver "libinput"
-			# Enable left mouse button by tapping
-			Option "Tapping" "on"
-#	 EndSection' > /etc/X11/xorg.conf.d/40-libinput.conf
 
 
 # Instalacion anaconda
