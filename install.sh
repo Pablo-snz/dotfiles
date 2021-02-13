@@ -104,7 +104,7 @@ gsettings set org.gnome.desktop.background picture-uri file://$HOME/.local/share
 
 # Instalando fuentes:
 mkdir -p $HOME/.fonts
-cp -r fonts/* $HOME/.fonts/*
+cp -r fonts/* $HOME/.fonts/
 fc-cache -v
 
 # Cambiando las fuentes:
@@ -116,7 +116,11 @@ gsettings set org.gnome.desktop.interface monospace-font-name 'Monospace 11'
 gsettings set org.gnome.desktop.peripherals.touchpad tap-to-click true
 
 # Task-warrior y Time-warrior
-cp -r regolith/timetaskwarrior/* $HOME/
+cp -r regolith/timetaskwarrior/taskrc $HOME/.taskrc
+mkdir -p $HOME/.task
+cp -r regolith/timetaskwarrior/task/* $HOME/task
+mkdir -p $HOME/.timewarrior
+cp -r regolith/timetaskwarrior/timewarrior/* $HOME/.timewarrior
 chmod +x $HOME/.task/hooks/on-modify.timewarrior
 
 # dunst
@@ -124,7 +128,7 @@ cp -r regolith/dunst/ $HOME/.config/dunst
 
 # Volume-notifications
 mkdir -p $HOME/.scripts
-cp -r regolith/scripts/* $HOME/.scripts/*
+cp -r regolith/scripts/* $HOME/.scripts/
 
 cd /tmp
 git clone https://github.com/multiplexd/brightlight.git
@@ -140,9 +144,9 @@ cd /tmp
 wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 sudo dpkg -i google-chrome-stable_current_amd64.deb
 
-# Firefox
+# Firefox ERROR
 mkdir -p $HOME.mozilla/firefox/*.default-release/chrome/
-cp themes/userChrome.css $HOME.mozilla/firefox/*.default-release/chrome/userChrome.css
+cp themes/userChrome.css $HOME/.mozilla/firefox/*.default-release/chrome/userChrome.css
 
 # korla
 mkdir -p $HOME/.local/share/icons
@@ -165,7 +169,7 @@ gsettings set org.gnome.desktop.interface gtk-theme 'Qogir-light'
 
 
 
-sudo mkdir -p /etc/X11/xorg.conf.d/40-libinput.conf
+sudo mkdir -p /etc/X11/xorg.conf.d/
 # tap to click
 sudo echo 'Section "InputClass"
 	        Identifier "libinput touchpad catchall"
