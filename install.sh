@@ -145,6 +145,10 @@ cd /tmp
 wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 sudo dpkg -i google-chrome-stable_current_amd64.deb
 
+# Firefox
+mkdir -p $HOME.mozilla/firefox/*.default-release/chrome/
+cp themes/userChrome.css $HOME.mozilla/firefox/*.default-release/chrome/userChrome.css
+
 # korla
 mkdir -p $HOME/.local/share/icons
 cd $HOME/.local/share/icons
