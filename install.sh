@@ -34,7 +34,6 @@ gitInstall() {
 	}
 
 instalationMain() { \
-	#curl -Ls "https://raw.githubusercontent.com/Pablo-snz/dotfiles/main/programs.csv" | sed '/^#/d' > /tmp/programs.csv
 	while IFS=, read -r tag program; do
 		case "$tag" in
 			"s") snapInstall "$program";;
@@ -43,7 +42,7 @@ instalationMain() { \
 		esac
 	done < programs.csv ;}
 
-sudo apt upgrade
+sudo apt update
 
 # curl
 sudo apt -y install curl
@@ -60,17 +59,17 @@ instalationMain
 
 # i3-config
 mkdir -p $HOME/.config/regolith/i3
-cp regolith/config/regolith/i3/config $HOME/.config/regolith/i3/config #> /dev/null 2>&1;
+cp regolith/config/regolith/i3/config $HOME/.config/regolith/i3/config 
 
 # compton
 mkdir -p $HOME/.config/regolith/compton
-sudo mkdir -p /usr/share/regolith-compositor;
-sudo cp regolith/regolith-compositor/init /usr/share/regolith-compositor/init #> /dev/null 2>&1;
-cp regolith/config/regolith/compton/config $HOME/.config/regolith/compton/config #> /dev/null 2>&1;
+sudo mkdir -p /usr/share/regolith-compositor
+sudo cp regolith/regolith-compositor/init /usr/share/regolith-compositor/init 
+cp regolith/config/regolith/compton/config $HOME/.config/regolith/compton/config 
 
 # i3-status
 mkdir -p $HOME/.config/i3status
-cp regolith/config/i3status/config $HOME/.config/i3status/config #> /dev/null 2>&1;
+cp regolith/config/i3status/config $HOME/.config/i3status/config 
 
 # Rofi
 sudo apt -y install rofi
@@ -78,13 +77,10 @@ mkdir -p ~/.config/rofi/
 cp -r regolith/rofi/* ~/.config/rofi/
 
 # Temas
-
-mkdir -p $HOME/backgrounds #> /dev/null 2>&1;
-cp themes/background/bg.jpg $HOME/backgrounds/bg.jpg #> /dev/null 2>&1;
+mkdir -p $HOME/backgrounds
+cp themes/background/bg.jpg $HOME/backgrounds/bg.jpg 
 
 # Xresources
-
-# Fondo
 cp regolith/Xresources-regolith $HOME/.Xresources-regolith
 xrdb ~/.Xresources-regolith
 
@@ -144,7 +140,7 @@ cd /tmp
 wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 sudo dpkg -i google-chrome-stable_current_amd64.deb
 
-# Firefox ERROR
+# Firefox
 mkdir -p $HOME.mozilla/firefox/*.default-release/chrome/
 cp themes/userChrome.css $HOME/.mozilla/firefox/*.default-release/chrome/userChrome.css
 
