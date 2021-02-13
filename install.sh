@@ -22,17 +22,14 @@ installGit() {
 }
 
 aptInstall() {
-	dialog --title "Instalacion" --infobox "Instalando \`$1\`" 5 70
 	installPkg "$1"
 	}
 
 snapInstall() {
-	dialog --title "Instalacion" --infobox "Instalando \`$1\`" 5 70
 	installSnap "$1"
 	}
 
 gitInstall() {
-	dialog --title "Instalacion" --infobox "Instalando \`$1\`" 5 70
 	installGit "$1"
 	}
 
