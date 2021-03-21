@@ -52,10 +52,10 @@ sudo apt -y install snapd
 
 # Regolith
 sudo add-apt-repository ppa:regolith-linux/release -y
-sudo apt -y install regolith-desktop
+sudo apt -y install regolith-desktop-mobile
 
 # Alacritty
-sudo add-apt-repository ppa:mmstick76/alacritty
+sudo add-apt-repository ppa:mmstick76/alacritty -y
 sudo apt -y install alacritty
 
 # Instalacion paquetes del CSV
