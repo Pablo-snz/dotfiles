@@ -73,7 +73,7 @@ set_from_resource $ws19 i3-wm.workspace.19.name "19"
 ###############################################################################
 
 ## Launch // Terminal // <> Enter ##
-bindsym $mod+Return exec urxvt -b 15
+bindsym $mod+Return exec alacritty
 
 ## Launch // Browser // <><Shift> Enter ##
 bindsym $mod+Shift+Return exec gtk-launch $(xdg-settings get default-web-browser)
@@ -168,6 +168,12 @@ bindsym $mod+Shift+h move left
 bindsym $mod+Shift+j move down
 bindsym $mod+Shift+k move up
 bindsym $mod+Shift+l move right
+
+## Modify // Containing Workspace // <><Ctrl><Shift> ↑ ↓ ← → ##
+bindsym $mod+Ctrl+Shift+h move workspace to output left
+bindsym $mod+Ctrl+Shift+j move workspace to output down
+bindsym $mod+Ctrl+Shift+k move workspace to output up
+bindsym $mod+Ctrl+Shift+l move workspace to output right
 
 ## Modify // Containing Workspace // <><Ctrl><Shift> ↑ ↓ ← → ##
 bindsym $mod+Ctrl+Shift+Left move workspace to output left
@@ -265,7 +271,7 @@ bindsym $mod+Ctrl+r restart
 
 ## Session // Logout // <><Shift> e ##
 set_from_resource $i3-wm.program.logout i3-wm.program.logout /usr/bin/gnome-session-quit --logout
-bindsym $mod+Shift+e exec urxvt -e sudo shutdown 0
+bindsym $mod+Shift+e exec alacritty -e sudo shutdown 0
 
 ## Session // Reboot // <><Shift> b ##
 set_from_resource $i3-wm.program.reboot i3-wm.program.reboot /usr/bin/gnome-session-quit --reboot
@@ -305,7 +311,7 @@ bindsym $mod+b exec $i3-wm.program.bluetooth
 
 ## Launch // File Browser // <><Shift> n ##
 set_from_resource $i3-wm.program.files i3-wm.program.files /usr/bin/nautilus --new-window
-bindsym $mod+Shift+n exec urxvt -e ranger 
+bindsym $mod+Shift+n exec alacritty -e ranger 
 
 ## Launch // Notification Viewer // <> n ##
 set_from_resource $i3-wm.program.notification_ui i3-wm.program.notification_ui /usr/bin/rofication-gui
@@ -481,7 +487,8 @@ bar {
 font pango:SF Pro Text Regular 11 
 
 i3bar_command i3bar -t
-status_command i3status
+#status_command i3status
+status_command i3blocks
 position top
 bindsym button4 nop
 bindsym button5 nop

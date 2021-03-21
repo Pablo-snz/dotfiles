@@ -3,6 +3,8 @@ a, rxvt-unicode
 a, neovim
 s, spotify
 s, sublime-text
+a, fonts-font-awesome
+a, i3blocks
 a, vim
 a, libgl1-mesa-glx
 a, libegl1-mesa

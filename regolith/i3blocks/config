@@ -1,0 +1,28 @@
+align=center
+separator=false
+color=#f8f8f2
+separator_block_width=15
+markup=pango
+
+
+[CPU]
+command=~/.config/i3blocks/cpu/cpu.sh
+label=
+interval=5
+separator=true
+
+#[TEMPERATURE]
+#command= ~/.config/i3blocks/temperature/temperature.sh
+#interval=5
+#label=
+
+[BATTERY]
+command=~/.config/i3blocks/battery/battery_info.sh
+interval=10
+
+[TIME]
+label=
+command=~/.config/i3blocks/date/time.sh
+min_width= 123.132.13
+interval=5
+

@@ -74,6 +74,10 @@ cp regolith/alacritty/alacritty.yml $HOME/.config/alacritty/alacritty.yml
 mkdir -p $HOME/.config/regolith/i3
 cp regolith/config/regolith/i3/config $HOME/.config/regolith/i3/config 
 
+# i3-blocks
+mkdir -p $HOME/.config/i3blocks
+cp -r regolith/i3blocks/* $HOME/.config/i3blocks/
+
 # compton
 mkdir -p $HOME/.config/regolith/compton
 sudo mkdir -p /usr/share/regolith-compositor
