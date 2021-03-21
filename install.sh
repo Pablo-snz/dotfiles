@@ -54,8 +54,21 @@ sudo apt -y install snapd
 sudo add-apt-repository ppa:regolith-linux/release -y
 sudo apt -y install regolith-desktop
 
+# Alacritty
+sudo add-apt-repository ppa:mmstick76/alacritty
+sudo apt -y install alacritty
+
 # Instalacion paquetes del CSV
 instalationMain
+
+# vim pluggins
+sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+mkdir -p $HOME/.config/nvim/
+cp -r regolith/nvim/* $HOME/.config/nvim/
+
+# Alacritty setting
+mkdir -p $HOME/.config/alacritty
+cp regolith/alacritty/alacritty.yml $HOME/.config/alacritty/alacritty.yml
 
 # i3-config
 mkdir -p $HOME/.config/regolith/i3

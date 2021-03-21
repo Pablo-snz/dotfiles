@@ -2,7 +2,7 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="$HOME/.oh-my-zsh"
+export ZSH="~/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -101,6 +101,13 @@ alias temp="watch -n1 sensors"
 alias clear="/bin/clear"
 alias balanced="sudo smbios-thermal-ctl --set-thermal-mode=Balanced"
 alias cool-bottom="sudo smbios-thermal-ctl --set-thermal-mode=Cool-Bottom"
-alias cond="source .zshrc-conda"
+alias cond="source ~/.zshrc2"
 alias docker="sudo docker"
 alias week="timew week"
+alias vim="nvim"
+
+_fix_cursor() {
+   echo -ne '\e[4 q'
+}
+
+precmd_functions+=(_fix_cursor)
