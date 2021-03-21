@@ -143,7 +143,8 @@ cp -r regolith/dunst/ $HOME/.config/dunst
 
 
 # Firefox
-cp themes/userChrome.css $HOME/.mozilla/firefox/*.default-release/chrome/userChrome.css
+thefile=$(ls $HOME/.mozilla/firefox/ | grep default-release )
+cp themes/userChrome.css $HOME/.mozilla/firefox/$thefile/chrome/userChrome.css
 
 
 # Volume-notifications
