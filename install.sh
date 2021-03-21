@@ -52,7 +52,7 @@ sudo apt -y install snapd
 
 # Regolith
 sudo add-apt-repository ppa:regolith-linux/release -y
-sudo apt -y install regolith-desktop-mobile
+sudo apt -y install regolith-desktop
 
 # Alacritty
 sudo add-apt-repository ppa:mmstick76/alacritty -y
@@ -83,6 +83,7 @@ cp -r regolith/i3blocks/* $HOME/.config/i3blocks/
 mkdir -p $HOME/.config/regolith/compton
 sudo mkdir -p /usr/share/regolith-compositor
 sudo cp regolith/regolith-compositor/init /usr/share/regolith-compositor/init 
+cp regolith/config/regolith/compton/config $HOME/.config/picom.conf 
 cp regolith/config/regolith/compton/config $HOME/.config/regolith/compton/config 
 
 # i3-status
