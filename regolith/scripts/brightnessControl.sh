@@ -13,7 +13,7 @@ function get_brightness {
 }
 
 function send_notification {
-  icon="/home/pablo-snz/.scripts/1.svg"
+  icon="$HOME/.scripts/1.svg"
   brightness=$(get_brightness)
   # Make the bar with the special character ─ (it's not dash -)
   # https://en.wikipedia.org/wiki/Box-drawing_character

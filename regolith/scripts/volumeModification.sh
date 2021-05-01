@@ -18,8 +18,8 @@ function is_mute {
 }
 
 function send_notification {
-  iconSound="/home/pablo-snz/.local/share/icons/kora-pgrey/panel/24/audio-on.svg"
-  iconMuted="/home/pablo-snz/.local/share/icons/kora-pgrey/panel/24/audio-off.svg"
+  iconSound="$HOME/.local/share/icons/kora-pgrey/panel/24/audio-on.svg"
+  iconMuted"=$HOME/.local/share/icons/kora-pgrey/panel/24/audio-off.svg"
   if is_mute ; then
     # notify-send  -i $iconMuted -u normal "mute" --hint=string:x-dunst-stack-tag:test
     notify-send -u normal "mute" --hint=string:x-dunst-stack-tag:test
@@ -55,5 +55,3 @@ case $1 in
     send_notification
     ;;
 esac
-
-

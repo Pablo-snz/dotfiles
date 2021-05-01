@@ -89,7 +89,6 @@ endfunction
 " Add status line support, for integration with other plugin, checkout `:h coc-status`
 
 au VimEnter * hi Normal ctermbg=none guibg=none
-nnoremap <C-c> :w <bar> :silent execute '!/home/pablo-snz/.scripts/compile %:p' <bar> :redraw! <Enter>
 
 " Terminal Configurations
 tnoremap jk <C-\><C-n>
