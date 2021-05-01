@@ -123,8 +123,8 @@ cp -r fonts/* $HOME/.fonts/
 fc-cache -v
 
 # Cambiando las fuentes:
-gsettings set org.gnome.desktop.interface document-font-name 'SF Pro Text 10.5'
-gsettings set org.gnome.desktop.interface font-name 'SF Pro Text 10.5'
+gsettings set org.gnome.desktop.interface document-font-name 'SF Pro Text 10'
+gsettings set org.gnome.desktop.interface font-name 'SF Pro Text 9.5'
 gsettings set org.gnome.desktop.interface monospace-font-name 'Monospace 11'
 
 # tap to click
@@ -144,12 +144,15 @@ cp -r regolith/dunst/ $HOME/.config/dunst
 
 # Firefox
 thefile=$(ls $HOME/.mozilla/firefox/ | grep default-release )
+mkdir -p  $HOME/.mozilla/firefox/$thefile/chrome/
 cp themes/userChrome.css $HOME/.mozilla/firefox/$thefile/chrome/userChrome.css
 
 
 # Volume-notifications
 mkdir -p $HOME/.scripts
 cp -r regolith/scripts/* $HOME/.scripts/
+cp regolith/Xmodmap $HOME/.Xmodmap
+
 
 cd /tmp
 git clone https://github.com/multiplexd/brightlight.git
@@ -198,6 +201,5 @@ case $yn in
 	* );;
 esac
 
-dialog --title "Cambiando a ZSH" --infobox "Poniendo por defecto zsh" 5 70
 
 chsh -s $(which zsh)

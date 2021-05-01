@@ -41,3 +41,5 @@ a, taskwarrior
 a, python3-pip
 a, timewarrior
 a, dconf-editor
+a,nodejs
+a,nmap

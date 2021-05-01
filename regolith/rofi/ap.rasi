@@ -17,7 +17,7 @@
 	spacing: 0;
 	background-color: transparent;
 
-	font: "SF Pro Text Regular 11";
+	font: "SF Pro Text Regular 10";
 }
 
 window {

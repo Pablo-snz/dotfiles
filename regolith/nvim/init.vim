@@ -23,49 +23,12 @@ call plug#end()
 
 inoremap jk <ESC>
 nmap <C-n> :NERDTreeToggle<CR>
-vmap ++ <plug>NERDCommenterToggle
-nmap ++ <plug>NERDCommenterToggle
 
-" open NERDTree automatically
-"autocmd StdinReadPre * let s:std_in=1
-"autocmd VimEnter * NERDTree
-
-let g:NERDTreeGitStatusWithFlags = 1
-"let g:WebDevIconsUnicodeDecorateFolderNodes = 1
-"let g:NERDTreeGitStatusNodeColorization = 1
-"let g:NERDTreeColorMapCustom = {
-    "\ "Staged"    : "#0ee375",  
-    "\ "Modified"  : "#d9bf91",  
-    "\ "Renamed"   : "#51C9FC",  
-    "\ "Untracked" : "#FCE77C",  
-    "\ "Unmerged"  : "#FC51E6",  
-    "\ "Dirty"     : "#FFBD61",  
-    "\ "Clean"     : "#87939A",   
-    "\ "Ignored"   : "#808080"   
-    "\ }                         
-
-
-let g:NERDTreeIgnore = ['^node_modules$']
-
-" vim-prettier
-"let g:prettier#quickfix_enabled = 0
-"let g:prettier#quickfix_auto_focus = 0
-" prettier command for coc
-command! -nargs=0 Prettier :CocCommand prettier.formatFile
-" run prettier on save
-"let g:prettier#autoformat = 0
-"autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html PrettierAsync
-
-
-" ctrlp
-let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
-
-" j/k will move virtual lines (lines that wrap)
-noremap <silent> <expr> j (v:count == 0 ? 'gj' : 'j')
-noremap <silent> <expr> k (v:count == 0 ? 'gk' : 'k')
+let NERDTreeMinimalUI=1
 
 set relativenumber
 
+" Cosas de tabulacion
 set smarttab
 set cindent
 set tabstop=2
@@ -75,25 +38,11 @@ set expandtab
 
 colorscheme gruvbox
 
-" Highlight currently open buffer in NERDTree
-"autocmd BufEnter * call SyncTree()
-
-" coc config
-let g:coc_global_extensions = [
-  \ 'coc-snippets',
-  \ 'coc-pairs',
-  \ 'coc-tsserver',
-  \ 'coc-eslint', 
-  \ 'coc-prettier', 
-  \ 'coc-json', 
-  \ ]
-" from readme
 " if hidden is not set, TextEdit might fail.
 set updatetime=300
 set signcolumn=no
 " don't give |ins-completion-menu| messages.
 
-" always show signcolumns
 
 " Use tab for trigger completion with characters ahead and navigate.
 " Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
@@ -115,11 +64,10 @@ inoremap <silent><expr> <c-space> coc#refresh()
 " Coc only does snippet and additional edit on confirm.
 inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 " Or use `complete_info` if your vim support it, like:
-" inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
 
 " Use `[g` and `]g` to navigate diagnostics
-nmap <silent> [g <Plug>(coc-diagnostic-prev)
-nmap <silent> ]g <Plug>(coc-diagnostic-next)
+nmap <silent> fk <Plug>(coc-diagnostic-prev)
+nmap <silent> fj <Plug>(coc-diagnostic-next)
 
 " Remap keys for gotos
 nmap <silent> gd <Plug>(coc-definition)
@@ -138,71 +86,103 @@ function! s:show_documentation()
   endif
 endfunction
 
-" Highlight symbol under cursor on CursorHold
-autocmd CursorHold * silent call CocActionAsync('highlight')
-
-" Remap for rename current word
-nmap <F2> <Plug>(coc-rename)
-
-" Remap for format selected region
-xmap <leader>f  <Plug>(coc-format-selected)
-nmap <leader>f  <Plug>(coc-format-selected)
-
-augroup mygroup
-  autocmd!
-  " Setup formatexpr specified filetype(s).
-  autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
-  " Update signature help on jump placeholder
-  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
-augroup end
-
-" Remap for do codeAction of selected region, ex: `<leader>aap` for current paragraph
-xmap <leader>a  <Plug>(coc-codeaction-selected)
-nmap <leader>a  <Plug>(coc-codeaction-selected)
-
-" Remap for do codeAction of current line
-nmap <leader>ac  <Plug>(coc-codeaction)
-" Fix autofix problem of current line
-nmap <leader>qf  <Plug>(coc-fix-current)
-
-" Create mappings for function text object, requires document symbols feature of languageserver.
-xmap if <Plug>(coc-funcobj-i)
-xmap af <Plug>(coc-funcobj-a)
-omap if <Plug>(coc-funcobj-i)
-omap af <Plug>(coc-funcobj-a)
-
-" Use <C-d> for select selections ranges, needs server support, like: coc-tsserver, coc-python
-nmap <silent> <C-d> <Plug>(coc-range-select)
-xmap <silent> <C-d> <Plug>(coc-range-select)
-
-" Use `:Format` to format current buffer
-command! -nargs=0 Format :call CocAction('format')
-
-" Use `:Fold` to fold current buffer
-command! -nargs=? Fold :call     CocAction('fold', <f-args>)
-
-" use `:OR` for organize import of current buffer
-command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
-
 " Add status line support, for integration with other plugin, checkout `:h coc-status`
-set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 
-" Using CocList
-" Show all diagnostics
-nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
-" Manage extensions
-nnoremap <silent> <space>e  :<C-u>CocList extensions<cr>
-" Show commands
-nnoremap <silent> <space>c  :<C-u>CocList commands<cr>
-" Find symbol of current document
-nnoremap <silent> <space>o  :<C-u>CocList outline<cr>
-" Search workspace symbols
-nnoremap <silent> <space>s  :<C-u>CocList -I symbols<cr>
-" Do default action for next item.
-nnoremap <silent> <space>j  :<C-u>CocNext<CR>
-" Do default action for previous item.
-nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
-" Resume latest coc list
-nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 au VimEnter * hi Normal ctermbg=none guibg=none
-set guicursor=n-v-c-sm:block,i-ci-ve:ver25,r-cr-o:hor20
+nnoremap <C-c> :w <bar> :silent execute '!/home/pablo-snz/.scripts/compile %:p' <bar> :redraw! <Enter>
+
+" Terminal Configurations
+tnoremap jk <C-\><C-n>
+nnoremap t :sp <bar> :wincmd j <bar> :res -20 <bar> :let $VIM_DIR=expand('%:p:h')<bar> cd $VIM_DIR <bar> :terminal<CR>
+
+" remap ñ to : in normal mode
+nnoremap ñ :
+
+command! -nargs=* Tabmerge call Tabmerge(<f-args>)
+
+function! Tabmerge(...)  " {{{1
+	if a:0 > 2
+		echohl ErrorMsg
+		echo "Too many arguments"
+		echohl None
+		return
+	elseif a:0 == 2
+		let tabnr = a:1
+		let where = a:2
+	elseif a:0 == 1
+		if a:1 =~ '^\d\+$' || a:1 == '$'
+			let tabnr = a:1
+		else
+			let where = a:1
+		endif
+	endif
+
+	if !exists('l:where')
+		let where = 'top'
+	endif
+
+	if !exists('l:tabnr')
+		if type(tabpagebuflist(tabpagenr() + 1)) == 3
+			let tabnr = tabpagenr() + 1
+		elseif type(tabpagebuflist(tabpagenr() - 1)) == 3
+			let tabnr = tabpagenr() - 1
+		else
+			echohl ErrorMsg
+			echo "Already only one tab"
+			echohl None
+			return
+		endif
+	endif
+
+	if tabnr == '$'
+		let tabnr = tabpagenr(tabnr)
+	else
+		let tabnr = tabnr
+	endif
+
+	let tabwindows = tabpagebuflist(tabnr)
+
+	if type(tabwindows) == 0 && tabwindows == 0
+		echohl ErrorMsg
+		echo "No such tab number: " . tabnr
+		echohl None
+		return
+	elseif tabnr == tabpagenr()
+		echohl ErrorMsg
+		echo "Can't merge with the current tab"
+		echohl None
+		return
+	endif
+
+	if where =~? '^t\(op\)\?$'
+		let where = 'topleft'
+	elseif where =~? '^b\(ot\(tom\)\?\)\?$'
+		let where = 'botright'
+	elseif where =~? '^l\(eft\)\?$'
+		let where = 'leftabove vertical'
+	elseif where =~? '^r\(ight\)\?$'
+		let where = 'rightbelow vertical'
+	else
+		echohl ErrorMsg
+		echo "Invalid location: " . a:2
+		echohl None
+		return
+	endif
+
+	let save_switchbuf = &switchbuf
+	let &switchbuf = ''
+
+	if where == 'top'
+		let tabwindows = reverse(tabwindows)
+	endif
+
+	for buf in tabwindows
+		exe where . ' sbuffer ' . buf
+	endfor
+
+	exe 'tabclose ' . tabnr
+
+	let &switchbuf = save_switchbuf
+endfunction
+
+"

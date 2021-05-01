@@ -502,7 +502,7 @@ colors {
 	 focused_workspace  #ffffff #ffffff #000000 
 	 inactive_workspace #00000000 #00000000 #C1BEBA
 	 binding_mode       #00000000 #00000000 #C1BEBA
-	 urgent_workspace   #16a085 #FDF6E3 #E5201D
+	 urgent_workspace   #00000000 #00000000 #E5201D
 
 	 #active_workspace   #595B5B #353836 #292F34
 	 #focused_workspace  #00000000 #00000000 #FFFFFF 
