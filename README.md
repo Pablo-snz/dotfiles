@@ -1,5 +1,8 @@
 # dotfiles
-My personal dotfiles for regolith - i3 -  in ubuntu 20.04
+My dotfiles for regolith - ubuntu 20.04
 
-![Alt text](Images/1.png?raw=true "Terminal") 
-![Alt text](Images/2.png?raw=true "Rofi") 
+## Images
+![Alt text](Images/1.png?raw=true "Background") 
+![Alt text](Images/2.png?raw=true "Vim") 
+![Alt text](Images/3.png?raw=true "Rofi") 
+
