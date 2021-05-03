@@ -555,7 +555,7 @@ bindsym $mod+Tab exec rofi -show window -mode window -window-thumbnail -theme ~/
 #Pruebas
 exec --no-startup-id dunst
 #exec --no-startup-id sudo undervolt --core -70 --cache -70
-exec /bin/xmodmap ~/.Xmodmap
+exec /bin/xmodmap ~/.Xmoadmap
 bindsym XF86Launch3 exec ~/.scripts/brightnessControl.sh up
 bindsym XF86Launch4 exec ~/.scripts/brightnessControl.sh down
 bindsym XF86Launch7 exec ~/.scripts/volumeModification.sh up
