@@ -187,6 +187,22 @@ cd Qogir-theme
 
 gsettings set org.gnome.desktop.interface gtk-theme 'Qogir-light'
 
+# Nautilus-Alacritty:
+cd /tmp
+sudo apt install python-nautilus
+git clone https://github.com/Stunkymonkey/nautilus-open-any-terminal.git
+
+cd nautilus-open-any-terminal
+sudo tools/update-extension-user.sh install || true
+sh tools/update-extension-user.sh install || true
+
+cp nautilus_open_any_terminal/schemas/com.github.stunkymonkey.nautilus-open-any-terminal.gschema.xml ~/.local/share/glib-2.0/schemas/com.github.stunkymonkey.nautilus-open-any-terminal.gschema.xml
+
+glib-compile-schemas ~/.local/share/glib-2.0/schemas/ || true
+
+gsettings set com.github.stunkymonkey.nautilus-open-any-terminal terminal alacritty
+gsettings set com.github.stunkymonkey.nautilus-open-any-terminal keybindings '<Ctrl><Alt>t'
+gsettings set com.github.stunkymonkey.nautilus-open-any-terminal new-tab true
 
 # Instalacion anaconda
 
