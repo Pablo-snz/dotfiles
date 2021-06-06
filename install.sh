@@ -147,6 +147,9 @@ thefile=$(ls $HOME/.mozilla/firefox/ | grep default-release )
 mkdir -p  $HOME/.mozilla/firefox/$thefile/chrome/
 cp themes/userChrome.css $HOME/.mozilla/firefox/$thefile/chrome/userChrome.css
 
+# Ranger
+mkdir -p $HOME/.config/ranger/
+cp -r regolith/ranger/ $HOME/.config/ranger
 
 # Volume-notifications
 mkdir -p $HOME/.scripts
