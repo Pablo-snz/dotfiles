@@ -139,7 +139,7 @@ cp -r regolith/timetaskwarrior/timewarrior/* $HOME/.timewarrior
 chmod +x $HOME/.task/hooks/on-modify.timewarrior
 
 # dunst
-git clone https://github.com/dunst-project/dunst.git 
+git clone https://github.com/dunst-project/dunst.git dunst 
 cd dunst/
 make > /dev/null
 sudo make install > /dev/null
