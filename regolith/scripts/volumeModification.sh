@@ -10,7 +10,8 @@
 # https://gist.github.com/sebastiencs/5d7227f388d93374cebdf72e783fbd6a
 
 function get_volume {
-  amixer get Master | grep '%' | head -n 1 | cut -d '[' -f 2 | cut -d '%' -f 1
+  pactl list sinks | grep '^[[:space:]]Volume:' | \
+    head -n $(( $SINK + 1 )) | tail -n 1 | sed -e 's,.* \([0-9][0-9]*\)%.*,\1,'
 }
 
 function is_mute {
@@ -18,11 +19,11 @@ function is_mute {
 }
 
 function send_notification {
-  iconSound="$HOME/.local/share/icons/kora-pgrey/panel/24/audio-on.svg"
-  iconMuted"=$HOME/.local/share/icons/kora-pgrey/panel/24/audio-off.svg"
+  iconSound="/home/pablo-snz/.local/share/icons/kora-pgrey/panel/24/audio-on.svg"
+  iconMuted="/home/pablo-snz/.local/share/icons/kora-pgrey/panel/24/audio-off.svg"
   if is_mute ; then
     # notify-send  -i $iconMuted -u normal "mute" --hint=string:x-dunst-stack-tag:test
-    notify-send -u normal "mute" --hint=string:x-dunst-stack-tag:test
+    notify-send -u normal "                               婢   " --hint=string:x-dunst-stack-tag:test
   else
     volume=$(get_volume)
     # Make the bar with the special character ─ (it's not dash -)
@@ -39,19 +40,20 @@ function send_notification {
 case $1 in
   up)
     # set the volume on (if it was muted)
-    amixer -D pulse set Master on > /dev/null
+    pactl set-sink-mute $(pactl list short sinks | awk '{print $2}') off
     # up the volume (+ 5%)
-    amixer -D pulse sset Master 4%+ > /dev/null
+    pactl set-sink-volume $(pactl list short sinks | awk '{print $2}') +5%
     send_notification
     ;;
   down)
-    amixer -D pulse set Master on > /dev/null
-    amixer -D pulse sset Master 4%- > /dev/null
+    pactl set-sink-mute $(pactl list short sinks | awk '{print $2}') off
+    pactl set-sink-volume $(pactl list short sinks | awk '{print $2}') -5%
     send_notification
     ;;
   mute)
     # toggle mute
-    amixer -D pulse set Master 1+ toggle > /dev/null
+    pactl set-sink-mute $(pactl list short sinks | awk '{print $2}') toggle
     send_notification
     ;;
 esac
+

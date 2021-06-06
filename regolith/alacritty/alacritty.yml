@@ -402,10 +402,11 @@ selection:
 #   - (Linux/BSD) user login shell
 #   - (Windows) powershell
 #shell:
-#  program: /bin/bash
+#  program: /bin/zsh
 #  args:
-#    - --login
-
+#    - -l
+#    - -c
+#    - "tmux"
 # Startup directory
 #
 # Directory the shell is started in. If this is unset, or `None`, the working

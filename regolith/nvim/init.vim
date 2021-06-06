@@ -1,6 +1,8 @@
 " Specify a directory for plugins
 call plug#begin('~/.vim/plugged')
 
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'ThePrimeagen/vim-be-good'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'scrooloose/nerdtree'
 "Plug 'tsony-tsonev/nerdtree-git-plugin'
@@ -27,6 +29,7 @@ nmap <C-n> :NERDTreeToggle<CR>
 let NERDTreeMinimalUI=1
 
 set relativenumber
+set number
 
 " Cosas de tabulacion
 set smarttab
@@ -89,10 +92,11 @@ endfunction
 " Add status line support, for integration with other plugin, checkout `:h coc-status`
 
 au VimEnter * hi Normal ctermbg=none guibg=none
+nnoremap <C-c> :w <bar> :silent execute '!/home/pablo-snz/.scripts/compile %:p' <bar> :redraw! <Enter>
 
 " Terminal Configurations
 tnoremap jk <C-\><C-n>
-nnoremap t :sp <bar> :wincmd j <bar> :res -20 <bar> :let $VIM_DIR=expand('%:p:h')<bar> cd $VIM_DIR <bar> :terminal<CR>
+nnoremap to :sp <bar> :wincmd j <bar> :res -20 <bar> :let $VIM_DIR=expand('%:p:h')<bar> cd $VIM_DIR <bar> :terminal<CR>
 
 " remap ñ to : in normal mode
 nnoremap ñ :
@@ -184,4 +188,5 @@ function! Tabmerge(...)  " {{{1
 	let &switchbuf = save_switchbuf
 endfunction
 
-"
+inoremap <C-e> <C-o>A
+vnoremap y "+y

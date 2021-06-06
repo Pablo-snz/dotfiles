@@ -13,7 +13,7 @@ function get_brightness {
 }
 
 function send_notification {
-  icon="$HOME/.scripts/1.svg"
+  icon="/home/pablo-snz/.scripts/1.svg"
   brightness=$(get_brightness)
   # Make the bar with the special character ─ (it's not dash -)
   # https://en.wikipedia.org/wiki/Box-drawing_character
@@ -26,12 +26,16 @@ function send_notification {
 case $1 in
   up)
     # increase the backlight by 5%
-    brightlight -p -i 3
+    if [ $(brightlight -p| awk '{$5=substr($5,1,length($5)-1); print $5}') -lt 10 ]; then
+      brightlight -p -i 1
+    else
+    brightlight -p -i 10 
+    fi
     send_notification
     ;;
   down)
     # decrease the backlight by 5%
-    brightlight -p -d 3
+    brightlight -p -d 10 || brightlight -p -d 1 
     send_notification
     ;;
 esac
