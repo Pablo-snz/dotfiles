@@ -1,6 +1,6 @@
 [global]
     #frame_width = 1
-    frame_color = "#000000"
+    frame_color = "#00000000"
     
     font = SF Pro Text 10
     
@@ -180,17 +180,17 @@
 [urgency_low]
     # IMPORTANT: colors have to be defined in quotation marks.
     # Otherwise the "#" and following would be interpreted as a comment.
-    background = "#000000"
+    background = "#00000000"
     foreground = "#fafafa"
     timeout = 1
 
 [urgency_normal]
-    background = "#000000"
+    background = "#00000000"
     foreground = "#fafafa" 
     timeout = 2
 
 [urgency_critical]
-    background = "#000000"
+    background = "#00000000"
     foreground = "#fafafa" #fbf1c7 #f2e5bc
     timeout = 0
 

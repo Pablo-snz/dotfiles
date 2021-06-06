@@ -42,7 +42,10 @@ case $1 in
     # set the volume on (if it was muted)
     pactl set-sink-mute $(pactl list short sinks | awk '{print $2}') off
     # up the volume (+ 5%)
+    if [ $(pactl list sinks | grep '^[[:space:]]Volume:' | head -n $(( $SINK + 1 )) | tail -n 1 | sed -e 's,.* \([0-9][0-9]*\)%.*,\1,') -lt 150 ]; then 
+
     pactl set-sink-volume $(pactl list short sinks | awk '{print $2}') +5%
+    fi
     send_notification
     ;;
   down)

@@ -139,8 +139,12 @@ cp -r regolith/timetaskwarrior/timewarrior/* $HOME/.timewarrior
 chmod +x $HOME/.task/hooks/on-modify.timewarrior
 
 # dunst
+git clone https://github.com/dunst-project/dunst.git 
+cd dunst/
+make > /dev/null
+sudo make install > /dev/null
+cd ..
 cp -r regolith/dunst/ $HOME/.config/dunst
-
 
 # Firefox
 thefile=$(ls $HOME/.mozilla/firefox/ | grep default-release )

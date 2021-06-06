@@ -28,7 +28,6 @@ a, okular
 a, telegram-desktop
 a, i3status
 a, obs-studio
-a, dunst
 a, hddtemp 
 a, lm-sensors
 a, xutils-dev
@@ -41,5 +40,7 @@ a, taskwarrior
 a, python3-pip
 a, timewarrior
 a, dconf-editor
-a,nodejs
-a,nmap
+a, nodejs
+a, nmap
+a, libxss-dev
+a, libnotify-dev
