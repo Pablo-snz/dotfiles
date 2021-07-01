@@ -194,6 +194,30 @@ cd Qogir-theme
 
 gsettings set org.gnome.desktop.interface gtk-theme 'Qogir-light'
 
+# Python Undervolt.
+################### ELIMINAR ESTAS LINEAS SI NO SE QUIERE UNDERVOLTERAR ########################
+
+sudo pip3 install undervolt
+touch /etc/systemd/system/undervolt.service
+echo "[Unit]
+Description=undervolt
+After=suspend.target
+After=hibernate.target
+After=hybrid-sleep.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/undervolt -v --core -75 --cache -75 --gpu -75
+
+[Install]
+WantedBy=multi-user.target
+WantedBy=suspend.target
+WantedBy=hibernate.target
+WantedBy=hybrid-sleep.target" > /etc/systemd/system/undervolt.service
+
+sudo systemctl start undervolt
+sudo systemctl enable undervolt
+
 # Nautilus-Alacritty:
 cd /tmp
 sudo apt install python-nautilus
